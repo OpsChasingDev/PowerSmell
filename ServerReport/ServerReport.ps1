@@ -9,7 +9,7 @@
 $Name = $env:COMPUTERNAME
 $Version = (Get-ComputerInfo | Select-Object OsVersion).OsVersion
 $DiskCount = (Get-CimInstance CIM_LogicalDisk).count
-$FreeSpace = (Get-CimInstance CIM_LogicalDisk).FreeSpace
+$FreeSpace = (Get-CimInstance CIM_LogicalDisk | Where-Object {$_.DeviceID -eq 'C:'}).FreeSpace
 
 # make our own custom object
 $obj = [PSCustomObject]@{
