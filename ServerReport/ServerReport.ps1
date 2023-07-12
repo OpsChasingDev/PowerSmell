@@ -16,7 +16,7 @@ $obj = [PSCustomObject]@{
     ComputerName = $Name
     OsVersion = $Version
     DiskCount = $DiskCount
-    'GB Free' = $FreeSpace / 1Gb
+    'GB Free' = [System.Math]::Round($FreeSpace / 1Gb, 2)
 }
 
 # show output
