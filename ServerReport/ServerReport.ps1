@@ -6,10 +6,11 @@
 #>
 
 # retrieve system info
-$Name = $env:COMPUTERNAME
 $Version = (Get-ComputerInfo | Select-Object OsVersion).OsVersion
-$DiskCount = (Get-CimInstance CIM_LogicalDisk).count
-$FreeSpace = (Get-CimInstance CIM_LogicalDisk | Where-Object {$_.DeviceID -eq 'C:'}).FreeSpace
+$Name = $env:COMPUTERNAME
+$DiskInstance = Get-CimInstance CIM_LogicalDisk 
+$DiskCount = $DiskInstance.ComputerName
+$FreeSpace = ($DiskInstance | Where-Object {$_.DeviceID -eq 'C:'}).FreeSpace
 
 # make our own custom object
 $obj = [PSCustomObject]@{
