@@ -9,7 +9,7 @@
 $Version = (Get-ComputerInfo | Select-Object OsVersion).OsVersion
 $Name = $env:COMPUTERNAME
 $DiskInstance = Get-CimInstance CIM_LogicalDisk 
-$DiskCount = $DiskInstance.ComputerName
+$DiskCount = $DiskInstance.Count
 $FreeSpace = ($DiskInstance | Where-Object {$_.DeviceID -eq 'C:'}).FreeSpace
 
 # make our own custom object
