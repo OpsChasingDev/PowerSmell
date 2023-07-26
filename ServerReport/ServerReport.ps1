@@ -1,10 +1,3 @@
-# FOR NEXT CLASS 
-<#
-- review people's scripts and see what they've added
-- modify the 'GB Free' property to operate only on the system drive
-- modify the script to reuse the operation for Get-CimInstance CIM_LogicalDisk
-#>
-
 # retrieve system info
 $Version = (Get-ComputerInfo | Select-Object OsVersion).OsVersion
 $Name = $env:COMPUTERNAME
