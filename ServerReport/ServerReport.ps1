@@ -1,4 +1,5 @@
 function Get-PowerSmell {
+    [CmdletBinding()]
     param (
         $DriveLetter
     )
