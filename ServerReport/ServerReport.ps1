@@ -1,14 +1,15 @@
 function Get-PowerSmell {
     [CmdletBinding()]
     param (
-        $DriveLetter
+        [ValidateSet("C","D","E","F","G","H")]
+        [string]$DriveLetter = 'C'
     )
     # retrieve system info
     $Version = (Get-ComputerInfo | Select-Object OsVersion).OsVersion
     $Name = $env:COMPUTERNAME
     $DiskInstance = Get-CimInstance CIM_LogicalDisk 
     $DiskCount = $DiskInstance.Count
-    $FreeSpace = ($DiskInstance | Where-Object {$_.DeviceID -eq $DriveLetter}).FreeSpace
+    $FreeSpace = ($DiskInstance | Where-Object {$_.DeviceID -eq ($DriveLetter + ":")}).FreeSpace
     
     # make our own custom object
     $obj = [PSCustomObject]@{
